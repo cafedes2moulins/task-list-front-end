@@ -3,15 +3,28 @@ import PropTypes from 'prop-types';
 
 import './Task.css';
 
+// {
+//   id: 1,
+//   title: 'Mow the lawn',
+//   isComplete: false,
+// }
+
 const Task = ({ id, title, isComplete }) => {
   const [complete, setComplete] = useState(isComplete);
   const buttonClass = complete ? 'tasks__item__toggle--completed' : '';
+
+  // if isComplete === true {
+  //   buttonClass = tasks__item__toggle--completed
+  // } isComplete === false {
+  //   buttonClass = ''
+  // }
 
   return (
     <li className="tasks__item">
       <button
         className={`tasks__item__toggle ${buttonClass}`}
-        onClick={() => setComplete(!complete)}
+        onClick={() => setComplete(!complete)} 
+        // false
       >
         {title}
       </button>
@@ -27,3 +40,18 @@ Task.propTypes = {
 };
 
 export default Task;
+
+
+// Wave 1 - question 2
+// const Task = (props) => {
+//   const id = props.id;
+//   const title = props.title;
+//   const isComplete = props.isComplete;
+
+//   // useState stuff
+
+//   return (
+//     JSX code
+//   )
+
+// }
