@@ -3,32 +3,35 @@ import TaskList from './components/TaskList.js';
 import './App.css';
 import { useState } from 'react';
 
-const TASKS = [
-  {
-    id: 1,
-    title: 'Mow the lawn',
-    isComplete: false,
-  },
-  {
-    id: 2,
-    title: 'Cook Pasta',
-    isComplete: true,
-  },
-];
-
 const App = () => {
   // 1. make a deep copy of initial data
-  const initialCopy = TASKS.map((task) => {
-    return { ...task };
-  });
-
-  // WHERE DATA NEEDS TO CHANGE: bikesList
-  // 2. create state
-  const [tasksList, setTasksList] = useState(initialCopy);
+  // const initialCopy = TASKS.map((task) => {
+  //   return { ...task };
+  // });
+  const [tasksData, setTasksData] = useState([
+    {
+      id: 1,
+      title: 'Mow the lawn',
+      isComplete: false,
+    },
+    {
+      id: 2,
+      title: 'Cook Pasta',
+      isComplete: true,
+    },
+  ]);
 
   // functions
-  const toggleCompletion = () => {
+  const toggleCompletion = (id) => {
     console.log('this is in toggleCompletion');
+    const tasksCopy = tasksData.map((task) => {
+      if (id === task.id) {
+        task.isComplete = !task.isComplete;
+        return task;
+      }
+      return task;
+    });
+    setTasksData(tasksCopy);
   };
 
   return (
@@ -38,7 +41,7 @@ const App = () => {
       </header>
       <main>
         <div>
-          {<TaskList tasks={TASKS} toggleCompletion={toggleCompletion} />}
+          <TaskList tasks={tasksData} toggleCompletion={toggleCompletion} />
         </div>
       </main>
     </div>
