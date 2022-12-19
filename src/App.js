@@ -34,6 +34,25 @@ const App = () => {
     setTasksData(tasksCopy);
   };
 
+  const deleteTask = (id) => {
+    console.log('this is in deleteTask');
+    // could use filter instead
+    const newTasksList = [];
+    for (const task of tasksData) {
+      if (id !== task.id) {
+        newTasksList.push(task);
+      }
+    }
+
+    // const tasksCopy = tasksData.map((task) => {
+    //   if (id !== task.id) {
+    //     return task;
+    //   }
+    // });
+
+    setTasksData(newTasksList);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -41,7 +60,11 @@ const App = () => {
       </header>
       <main>
         <div>
-          <TaskList tasks={tasksData} toggleCompletion={toggleCompletion} />
+          <TaskList
+            tasks={tasksData}
+            toggleCompletion={toggleCompletion}
+            deleteTask={deleteTask}
+          />
         </div>
       </main>
     </div>
