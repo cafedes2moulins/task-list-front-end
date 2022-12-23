@@ -29,6 +29,12 @@ const App = () => {
   // functions
   const toggleCompletion = () => {
     console.log('this is in toggleCompletion');
+
+    const newTaskList = [];
+    for (cont task in tasksList) {
+      
+    }
+
   };
 
   return (
