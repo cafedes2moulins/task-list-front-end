@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Task.css';
@@ -9,9 +9,8 @@ import './Task.css';
 //   isComplete: false,
 // }
 
-const Task = ({ id, title, isComplete }) => {
-  const [complete, setComplete] = useState(isComplete);
-  const buttonClass = complete ? 'tasks__item__toggle--completed' : '';
+const Task = ({ id, title, isComplete, toggleCompletion, deleteTask }) => {
+  const buttonClass = isComplete ? 'tasks__item__toggle--completed' : '';
 
   // if isComplete === true {
   //   buttonClass = tasks__item__toggle--completed
@@ -23,12 +22,17 @@ const Task = ({ id, title, isComplete }) => {
     <li className="tasks__item">
       <button
         className={`tasks__item__toggle ${buttonClass}`}
-        onClick={() => setComplete(!complete)} 
+        onClick={() => toggleCompletion(id)}
         // false
       >
         {title}
       </button>
-      <button className="tasks__item__remove button">x</button>
+      <button
+        className="tasks__item__remove button"
+        onClick={() => deleteTask(id)}
+      >
+        x
+      </button>
     </li>
   );
 };
@@ -37,10 +41,11 @@ Task.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   isComplete: PropTypes.bool.isRequired,
+  toggleCompletion: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 };
 
 export default Task;
-
 
 // Wave 1 - question 2
 // const Task = (props) => {
